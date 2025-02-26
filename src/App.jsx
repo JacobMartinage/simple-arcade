@@ -1,15 +1,15 @@
 // App.jsx
 import { useState, useEffect } from 'react';
 import GalagaGame from './games/Galaga';
-import AsteroidsGame from './games/Asteroids';
+import Asteroids from './games/Asteroids';
 import './index.css';
 
 function App() {
   const [selectedGame, setSelectedGame] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const games = [
-    { name: 'GALAGA', component: <GalagaGame onBack={() => setSelectedGame(null)} /> },
-    { name: 'ASTEROIDS', component: <AsteroidsGame onBack={() => setSelectedGame(null)} /> },
+    // { name: 'GALAGA', component: <GalagaGame onBack={() => setSelectedGame(null)} /> },
+    { name: 'ASTEROIDS', component: <Asteroids onBack={() => setSelectedGame(null)} /> },
   ];
 
   useEffect(() => {
@@ -45,10 +45,11 @@ function App() {
 
   const renderContent = () => {
     switch (selectedGame) {
+      
+      case 'asteroids':
+        return <Asteroids onBack={() => setSelectedGame(null)} />;
       case 'galaga':
         return <GalagaGame onBack={() => setSelectedGame(null)} />;
-      case 'asteroids':
-        return <AsteroidsGame onBack={() => setSelectedGame(null)} />;
       default:
         return renderMenu();
     }
