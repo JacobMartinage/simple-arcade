@@ -8,7 +8,7 @@ const KEY_CODES = {
   39: 'right',
 };
 
-const FPS = 60; // Target FPS to stabilize performance across devices
+const FPS = 240;
 
 const Asteroids = ({ onBack }) => {
   const canvasRef = useRef(null);
@@ -51,10 +51,10 @@ const Asteroids = ({ onBack }) => {
         asteroids.current.push({
           x,
           y,
-          size: Math.random() * 60 + 40,
+          size: Math.random() * 40 + 50,
           velocity: {
-            x: Math.random() * 0.8 - 0.4, // Reduced velocity for smoother gameplay
-            y: Math.random() * 0.8 - 0.4,
+            x: (Math.random() * 1.2 - 0.6),
+            y: (Math.random() * 1.2 - 0.6),
           },
         });
       }
@@ -63,8 +63,8 @@ const Asteroids = ({ onBack }) => {
     const updateShip = (delta) => {
       if (!ship.current.alive) return;
 
-      const turnSpeed = 1.2 * delta;
-      const acceleration = 0.025 * delta;
+      const turnSpeed = 1.3 * delta;
+      const acceleration = 0.05 * delta;
 
       if (keys.current['left']) ship.current.rotation -= turnSpeed;
       if (keys.current['right']) ship.current.rotation += turnSpeed;
@@ -90,11 +90,11 @@ const Asteroids = ({ onBack }) => {
       context.translate(x, y);
       context.rotate(((rotation - 90) * Math.PI) / 180);
       context.strokeStyle = 'white';
-      context.lineWidth = 2;
+      context.lineWidth = 3;
       context.beginPath();
       context.moveTo(24, 0);
       context.lineTo(-20, 16);
-      context.lineTo(-14, 0);
+      context.lineTo(-15, 0);
       context.lineTo(-20, -16);
       context.closePath();
       context.stroke();
@@ -107,9 +107,9 @@ const Asteroids = ({ onBack }) => {
         bullets.current.push({
           x: ship.current.x + Math.cos(rad) * 15,
           y: ship.current.y + Math.sin(rad) * 15,
-          velocity: { x: Math.cos(rad) * 5, y: Math.sin(rad) * 5 }, // Reduced bullet speed for smoother performance
+          velocity: { x: Math.cos(rad) * 5, y: Math.sin(rad) * 5 },
           life: 150,
-          radius: 4,
+          radius: 6,
         });
         ship.current.canShoot = false;
         setTimeout(() => (ship.current.canShoot = true), 250);
@@ -151,7 +151,7 @@ const Asteroids = ({ onBack }) => {
                 alive: true,
               };
               scoreRef.current = 0;
-              spawnAsteroids(6);
+              spawnAsteroids(10);
             }, 1500);
           }
         });
@@ -199,7 +199,7 @@ const Asteroids = ({ onBack }) => {
 
       asteroids.current.forEach((asteroid) => {
         context.strokeStyle = 'gray';
-        context.lineWidth = 1.5;
+        context.lineWidth = 2;
         context.beginPath();
         context.arc(asteroid.x, asteroid.y, asteroid.size / 2, 0, Math.PI * 2);
         context.stroke();
@@ -208,7 +208,7 @@ const Asteroids = ({ onBack }) => {
       requestAnimationFrame(render);
     };
 
-    spawnAsteroids(6);
+    spawnAsteroids(10);
     requestAnimationFrame(render);
 
     const handleKeyDown = (e) => {
