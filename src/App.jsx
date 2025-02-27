@@ -39,7 +39,7 @@ function App() {
           </div>
         ))}
       </div>
-      <p className="mt-8 text-green-700 text-[2rem]">USE ARROW KEYS TO NAVIGATE - PRESS ENTER TO SELECT</p>
+      <p className="mt-8 text-green-700 text-[2rem]">PRESS ENTER TO PLAY</p>
     </div>
   );
 
