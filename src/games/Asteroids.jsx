@@ -131,7 +131,7 @@ const Asteroids = ({ onBack }) => {
         asteroid.y = (asteroid.y + asteroid.velocity.y * delta + canvas.height) % canvas.height;
       });
 
-      if (asteroids.current.length === 0) spawnAsteroids(6);
+      if (asteroids.current.length === 0) spawn(12);
     };
 
     const checkCollisions = () => {
