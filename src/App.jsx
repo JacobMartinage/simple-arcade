@@ -30,16 +30,16 @@ function App() {
   }, [selectedIndex, games, selectedGame]);
 
   const renderMenu = () => (
-    <div className="flex flex-col items-center justify-center h-screen bg-black text-green-400 font-mono w-screen">
-      <h1 className="text-5xl mb-10 tracking-widest">ARCADE GAMES</h1>
-      <div className="space-y-4 text-3xl">
+    <div className="flex flex-col items-center justify-center h-screen bg-black text-green-400 font-mono w-screen text-[6rem]">
+      <h1 className="mb-10 text-[6rem]">ARCADE</h1>
+      <div className="space-y-4 text-[6rem]">
         {games.map((game, index) => (
           <div key={game.name} className={index === selectedIndex ? 'text-green-200' : 'text-green-600'}>
             {index === selectedIndex ? '> ' : ''}{game.name}{index === selectedIndex ? ' <' : ''}
           </div>
         ))}
       </div>
-      <p className="mt-8 text-green-700">USE ARROW KEYS TO NAVIGATE - PRESS ENTER TO SELECT</p>
+      <p className="mt-8 text-green-700 text-[2rem]">USE ARROW KEYS TO NAVIGATE - PRESS ENTER TO SELECT</p>
     </div>
   );
 
